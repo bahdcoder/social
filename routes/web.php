@@ -71,3 +71,10 @@ Route::group(['middleware' => 'auth'], function(){
     ]);
 
 });
+
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+  Route::get('users', [
+    'uses' => 'UsersController@index',
+    'as' => 'admin.users'
+  ]);
+});
